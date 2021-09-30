@@ -1,3 +1,5 @@
+// Pls create new database named noteapptest in postgres before test
+
 const NoteService = require("../NoteService/NoteService");
 require("dotenv").config();
 

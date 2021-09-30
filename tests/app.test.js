@@ -1,7 +1,5 @@
 const request = require("supertest");
 const app = require("../app");
-const knexConfig = require("./testFile/knexfile")["development"];
-const knex = require("knex")(knexConfig);
 
 
 describe("Routes", () => {

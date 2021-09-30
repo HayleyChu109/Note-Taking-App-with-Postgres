@@ -2,7 +2,7 @@ const knexConfig = require("../knexfile")["development"];
 const knex = require("knex")(knexConfig);
 
 const authChallenger = (username, password, callback) => {
-    knex("users")
+    knex('users')
         .then((users) => {
             for (let user of users) {
                 if (user.username === username && user.password === password) {
