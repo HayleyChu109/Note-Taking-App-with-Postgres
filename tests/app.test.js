@@ -1,5 +1,7 @@
 const request = require("supertest");
 const app = require("../app");
+const knexConfig = require("./testFile/knexfile")["development"];
+const knex = require("knex")(knexConfig);
 
 
 describe("Routes", () => {
@@ -9,9 +11,7 @@ describe("Routes", () => {
         .get("/")
         .auth("Hayley", "123")
         .expect(200)
-        .end(() => {
-         done();
-        })
+        done();
     });
 
     it("/ should return 401 if not input username and password", (done) => {
@@ -39,9 +39,6 @@ describe("Routes", () => {
         .get("/hello")
         .auth("Hayley", "123")
         .expect(404)
-        .end((error, res) => {
-          if (error) throw error;
-          done();
-        })
+        done();
     })
 })
