@@ -1,5 +1,8 @@
-const request = require("supertest");
-const app = require("../app");
+const app = require("../app")
+const request = require("supertest")
+
+const knexConfig = require("../knexfile").development
+const knex = require("knex")(knexConfig);
 
 
 describe("Routes", () => {
@@ -33,10 +36,19 @@ describe("Routes", () => {
     })
 
     it("/ should return 404 if input incorrect router", (done) => {
-      request(app)
-        .get("/hello")
-        .auth("Hayley", "123")
-        .expect(404)
-        done();
+      // request(app)
+      //   .get("/hello")
+      //   .auth("Hayley", "123")
+      //   .expect(404)
+      //   .end((error) => {
+      //     if (error) throw error;
+      //     done();
+      //   })
+        // done();
+        knex('users').then((users)=>{
+          expect(users).toBe([{username:'Hayley', password:'123', id: 1}, {username:'Heidi', password:'456', id: 2}])
+        })
+
+
     })
 })
